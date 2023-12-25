@@ -110,23 +110,29 @@ class _NickNameScreenState extends State<NickNameScreen> {
                 controller: _nicknameController,
                 decoration: InputDecoration(
                   hintText: "닉네임을 입력해주세요",
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 10.0), // 여기서 높이 조정
-                  suffix: GestureDetector(
-                    onTap: _onCheckNickname,
-                    child: Container(
-                      width: Sizes.size72,
-                      height: Sizes.size35, // 이제 높이 설정이 적용될 것입니다.
-                      decoration: ShapeDecoration(
-                        color: AppColors.g2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(2),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+                  suffixIcon: Align(
+                    alignment: Alignment.centerRight,
+                    widthFactor: 1.0,
+                    child: GestureDetector(
+                      onTap: _onCheckNickname,
+                      child: Container(
+                        width: Sizes.size72,
+                        height: Sizes.size35,
+                        decoration: ShapeDecoration(
+                          color: _nickname.isEmpty
+                              ? AppColors.g2
+                              : AppColors.bluedark,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2),
+                          ),
                         ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '중복 확인',
-                          style: AppTextStyles.btn1,
+                        child: Center(
+                          child: Text(
+                            '중복 확인',
+                            style: AppTextStyles.btn1
+                                .copyWith(color: AppColors.white),
+                          ),
                         ),
                       ),
                     ),
