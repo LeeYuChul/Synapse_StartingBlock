@@ -25,16 +25,21 @@ class StartingBlock extends StatelessWidget {
           ),
         ),
         inputDecorationTheme: const InputDecorationTheme(
-            // 포커스를 받지 않았을 때의 밑줄 색상
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColors.g2),
-            ),
-            // 포커스를 받았을 때의 밑줄 색상
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColors.g2),
-            ),
-            errorBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: AppColors.activered))),
+          // 포커스를 받지 않았을 때의 밑줄 색상
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.g2),
+          ),
+          // 포커스를 받았을 때의 밑줄 색상
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.g2),
+          ),
+          errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.activered),
+          ),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.activered),
+          ),
+        ),
       ),
       home: const NickNameScreen(),
     );
