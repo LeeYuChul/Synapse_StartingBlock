@@ -44,7 +44,7 @@ class _EnterprenutScreenState extends State<EnterprenutScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Gaps.h12,
+                Gaps.v12,
                 const Row(
                   children: [
                     Icon(

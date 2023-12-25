@@ -25,8 +25,7 @@ class _SchoolScreenState extends State<SchoolScreen> {
       });
     });
 
-    filteredSchoolList =
-        List.from(schoolList); // schoolList를 screen_manage.dart에서 불러온다고 가정
+    filteredSchoolList = List.from(schoolList);
   }
 
   void filterSearchResults(String query) {
@@ -44,6 +43,14 @@ class _SchoolScreenState extends State<SchoolScreen> {
     }
   }
 
+  void _onSchoolTap(String selectedSchool) {
+    setState(() {
+      _schoolInfoController.text = selectedSchool;
+      _schoolInfo = selectedSchool;
+      filteredSchoolList = List.from(schoolList);
+    });
+  }
+
   void _onNextTap() {
     if (_schoolInfo.isEmpty) return;
     Navigator.of(context).push(
@@ -59,7 +66,7 @@ class _SchoolScreenState extends State<SchoolScreen> {
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pop(context),
             icon: Image(image: AppImages.back),
           ),
         ),
@@ -72,7 +79,7 @@ class _SchoolScreenState extends State<SchoolScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Gaps.h12,
+                Gaps.v12,
                 const Row(
                   children: [
                     Icon(
@@ -113,31 +120,25 @@ class _SchoolScreenState extends State<SchoolScreen> {
                   ],
                 ),
                 Gaps.v36,
-                Text(
-                  "대학교(원)를 선택해주세요",
-                  style: AppTextStyles.h5.copyWith(color: AppColors.g6),
-                ),
-                Gaps.v10,
-                Text(
-                  "현재 일부 대학의 교내 지원사업을 제공해 드립니다",
-                  style: AppTextStyles.bd6.copyWith(color: AppColors.g6),
-                ),
-                Gaps.v32,
                 TextField(
                   controller: _schoolInfoController,
                   decoration: const InputDecoration(hintText: "학교명을 입력해주세요"),
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: filteredSchoolList.length,
+                    padding: EdgeInsets.zero,
+                    itemCount: filteredSchoolList.length > 3
+                        ? 3
+                        : filteredSchoolList.length, // 최대 3개만 표시
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text(filteredSchoolList[index]),
+                        onTap: () => _onSchoolTap(filteredSchoolList[index]),
                       );
                     },
                   ),
                 ),
-                const Spacer(), // 나머지 공간을 채우는 위젯
+                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 72),
                   child: GestureDetector(

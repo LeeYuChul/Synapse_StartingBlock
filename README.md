@@ -1,6 +1,6 @@
-# starting_block
+# 23-24 시냅스_스타팅블록
 
-A new Flutter project.
+대학(원)생 창업자를 위한 스타트업 헬퍼 서비스 프로젝트.
 
 ## Getting Started
 

@@ -39,7 +39,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pop(context),
             icon: Image(image: AppImages.back),
           ), // 왼쪽 메뉴버튼
         ),
@@ -53,7 +53,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Gaps.h12,
+                Gaps.v12,
                 const Row(
                   children: [
                     Icon(
@@ -108,9 +108,6 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                   controller: _birthdayController,
                   decoration: const InputDecoration(hintText: "연도월일"),
                   keyboardType: TextInputType.number,
-                ),
-                const SizedBox(
-                  height: 382,
                 ),
                 const Spacer(), // 나머지 공간을 채우는 위젯
                 Padding(
