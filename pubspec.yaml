@@ -64,6 +64,7 @@ flutter:
     - assets/icon/20/
     - assets/icon/24/
     - assets/onboard_image/
+    - lib/data_manage/user_nickname.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

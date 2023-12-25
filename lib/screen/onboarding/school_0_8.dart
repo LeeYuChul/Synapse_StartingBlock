@@ -119,6 +119,16 @@ class _SchoolScreenState extends State<SchoolScreen> {
                 ],
               ),
               Gaps.v36,
+              Text(
+                "대학교(원)을 선택해주세요",
+                style: AppTextStyles.h5.copyWith(color: AppColors.g6),
+              ),
+              Gaps.v10,
+              Text(
+                "현재 일부 대학의 교내 지원 사업을 제공해 드립니다",
+                style: AppTextStyles.bd6.copyWith(color: AppColors.g6),
+              ),
+              Gaps.v32,
               TextField(
                 controller: _schoolInfoController,
                 decoration: const InputDecoration(hintText: "학교명을 입력해주세요"),
