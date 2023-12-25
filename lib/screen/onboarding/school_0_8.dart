@@ -55,7 +55,7 @@ class _SchoolScreenState extends State<SchoolScreen> {
     if (_schoolInfo.isEmpty) return;
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const EnterprenutScreen(),
+        builder: (context) => const RoadmapScreen(),
       ),
     );
   }

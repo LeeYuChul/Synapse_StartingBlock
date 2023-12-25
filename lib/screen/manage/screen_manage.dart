@@ -8,3 +8,4 @@ export 'package:starting_block/screen/onboarding/roadmapset_0_9.dart';
 
 //데이터 파일 관리용
 export 'package:starting_block/screen/onboarding/onboarding_data/school_info.dart';
+export 'package:starting_block/screen/manage/roadmap_data.dart';
