@@ -55,4 +55,24 @@ class AppImages {
       const AssetImage('assets/icon/24/settings.png');
   static AssetImage get sort_actived =>
       const AssetImage('assets/icon/24/sort_actived.png');
+
+  // logo image
+  static AssetImage get logo_40 =>
+      const AssetImage('assets/logo/img_launcher_40.png');
+  static AssetImage get logo_58 =>
+      const AssetImage('assets/logo/img_launcher_58.png');
+  static AssetImage get logo_60 =>
+      const AssetImage('assets/logo/img_launcher_60.png');
+  static AssetImage get logo_80 =>
+      const AssetImage('assets/logo/img_launcher_80.png');
+  static AssetImage get logo_87 =>
+      const AssetImage('assets/logo/img_launcher_87.png');
+  static AssetImage get logo_120 =>
+      const AssetImage('assets/logo/img_launcher_120.png');
+  static AssetImage get logo_180 =>
+      const AssetImage('assets/logo/img_launcher_180.png');
+  static AssetImage get logo_512 =>
+      const AssetImage('assets/logo/img_launcher_512.png');
+  static AssetImage get logo_1024 =>
+      const AssetImage('assets/logo/img_launcher_1024.png');
 }

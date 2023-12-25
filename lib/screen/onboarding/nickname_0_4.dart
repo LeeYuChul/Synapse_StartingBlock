@@ -72,9 +72,7 @@ class _NickNameScreenState extends State<NickNameScreen> {
     if (value.length < 2 || value.length > 10) {
       return '닉네임은 2자에서 10자 사이로 입력해주세요';
     }
-    if (_nicknames.contains(value)) {
-      return '이미 사용 중인 닉네임입니다';
-    }
+    // 중복 확인은 여기서 하지 않음
     return null;
   }
 
@@ -82,8 +80,7 @@ class _NickNameScreenState extends State<NickNameScreen> {
     final isAvailable = !_nicknames.contains(_nickname);
     setState(() {
       _isNicknameChecked = true; // 중복 확인이 완료되었다고 표시
-      _isNicknameAvailable =
-          isAvailable && _isNicknameAvailable; // 기존 조건과 함께 사용 가능 여부 업데이트
+      _isNicknameAvailable = isAvailable;
       _nicknameAvailabilityMessage =
           isAvailable ? "사용 가능한 닉네임입니다" : "이미 사용 중인 닉네임입니다";
     });
