@@ -1,5 +1,6 @@
 //Screen파일 관리용
 export 'package:starting_block/main.dart';
+export 'package:starting_block/screen/onboarding/nickname_0_4.dart';
 export 'package:starting_block/screen/onboarding/birthday_0_5.dart';
 export 'package:starting_block/screen/onboarding/entrepreneur_0_6.dart';
 export 'package:starting_block/screen/onboarding/residence_0_7.dart';

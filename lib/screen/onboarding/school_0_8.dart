@@ -62,99 +62,96 @@ class _SchoolScreenState extends State<SchoolScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Image(image: AppImages.back),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Image(image: AppImages.back),
         ),
-        body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Gaps.v12,
-                const Row(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.blue,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                  ],
+      ),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.v12,
+              const Row(
+                children: [
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.blue,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                ],
+              ),
+              Gaps.v36,
+              TextField(
+                controller: _schoolInfoController,
+                decoration: const InputDecoration(hintText: "학교명을 입력해주세요"),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: filteredSchoolList.length > 3
+                      ? 3
+                      : filteredSchoolList.length, // 최대 3개만 표시
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        filteredSchoolList[index],
+                        style: AppTextStyles.bd4.copyWith(color: AppColors.g6),
+                      ),
+                      onTap: () => _onSchoolTap(filteredSchoolList[index]),
+                    );
+                  },
                 ),
-                Gaps.v36,
-                TextField(
-                  controller: _schoolInfoController,
-                  decoration: const InputDecoration(hintText: "학교명을 입력해주세요"),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: filteredSchoolList.length > 3
-                        ? 3
-                        : filteredSchoolList.length, // 최대 3개만 표시
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(
-                          filteredSchoolList[index],
-                          style:
-                              AppTextStyles.bd4.copyWith(color: AppColors.g6),
-                        ),
-                        onTap: () => _onSchoolTap(filteredSchoolList[index]),
-                      );
-                    },
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 72),
+                child: GestureDetector(
+                  onTap: _onNextTap,
+                  child: NextContained(
+                    text: "다음",
+                    disabled: _schoolInfo.isEmpty,
                   ),
                 ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 72),
-                  child: GestureDetector(
-                    onTap: _onNextTap,
-                    child: NextContained(
-                      text: "다음",
-                      disabled: _schoolInfo.isEmpty,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

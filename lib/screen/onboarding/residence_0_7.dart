@@ -116,86 +116,84 @@ class _ResidenceScreenState extends State<ResidenceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Image(image: AppImages.back),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Image(image: AppImages.back),
         ),
-        body: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Gaps.v12,
-                const Row(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.blue,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                    Gaps.h4,
-                    Icon(
-                      Icons.circle,
-                      size: Sizes.size8,
-                      color: AppColors.g2,
-                    ),
-                  ],
-                ),
-                Gaps.v36,
-                Text(
-                  "거주지를 선택해주세요",
-                  style: AppTextStyles.h5.copyWith(color: AppColors.g6),
-                ),
-                Gaps.v10,
-                Text(
-                  "주민등록상의 거주지를 선택해주세요",
-                  style: AppTextStyles.bd6.copyWith(color: AppColors.g6),
-                ),
-                Gaps.v32,
-                buildGrid(),
-                const Spacer(), // 나머지 공간을 채우는 위젯
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 72),
-                  child: GestureDetector(
-                    onTap: _onNextTap,
-                    child: NextContained(
-                      text: "다음",
-                      disabled: selectedRegion == null,
-                    ),
+      ),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.v12,
+              const Row(
+                children: [
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.blue,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                  Gaps.h4,
+                  Icon(
+                    Icons.circle,
+                    size: Sizes.size8,
+                    color: AppColors.g2,
+                  ),
+                ],
+              ),
+              Gaps.v36,
+              Text(
+                "거주지를 선택해주세요",
+                style: AppTextStyles.h5.copyWith(color: AppColors.g6),
+              ),
+              Gaps.v10,
+              Text(
+                "주민등록상의 거주지를 선택해주세요",
+                style: AppTextStyles.bd6.copyWith(color: AppColors.g6),
+              ),
+              Gaps.v32,
+              buildGrid(),
+              const Spacer(), // 나머지 공간을 채우는 위젯
+              Padding(
+                padding: const EdgeInsets.only(bottom: 72),
+                child: GestureDetector(
+                  onTap: _onNextTap,
+                  child: NextContained(
+                    text: "다음",
+                    disabled: selectedRegion == null,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

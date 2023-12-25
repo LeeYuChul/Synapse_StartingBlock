@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="starting_block"
+        android:label="스타팅블록"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

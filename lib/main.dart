@@ -13,19 +13,30 @@ class StartingBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.blue,
+        scaffoldBackgroundColor: AppColors.white,
         appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.black,
+          backgroundColor: AppColors.white,
           foregroundColor: AppColors.white,
-          elevation: 10,
+          elevation: 0,
           titleTextStyle: TextStyle(
             color: Colors.blue,
             fontSize: Sizes.size8,
             fontWeight: FontWeight.w600,
           ),
         ),
+        inputDecorationTheme: const InputDecorationTheme(
+            // 포커스를 받지 않았을 때의 밑줄 색상
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.g2),
+            ),
+            // 포커스를 받았을 때의 밑줄 색상
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.g2),
+            ),
+            errorBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: AppColors.activered))),
       ),
-      home: const BirthdayScreen(),
+      home: const NickNameScreen(),
     );
   }
 }
