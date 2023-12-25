@@ -132,7 +132,11 @@ class _SchoolScreenState extends State<SchoolScreen> {
                         : filteredSchoolList.length, // 최대 3개만 표시
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(filteredSchoolList[index]),
+                        title: Text(
+                          filteredSchoolList[index],
+                          style:
+                              AppTextStyles.bd4.copyWith(color: AppColors.g6),
+                        ),
                         onTap: () => _onSchoolTap(filteredSchoolList[index]),
                       );
                     },

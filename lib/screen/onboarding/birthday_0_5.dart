@@ -38,10 +38,11 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          title: const Text("dhsmf"),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: Image(image: AppImages.back),
-          ), // 왼쪽 메뉴버튼
+          ),
         ),
         body: GestureDetector(
           onTap: () {

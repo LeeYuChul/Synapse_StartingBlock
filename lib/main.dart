@@ -13,17 +13,17 @@ class StartingBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.blue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.black,
           foregroundColor: AppColors.white,
-          elevation: 0,
+          elevation: 10,
           titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: Sizes.size16 + Sizes.size2,
+            color: Colors.blue,
+            fontSize: Sizes.size8,
             fontWeight: FontWeight.w600,
           ),
         ),
-        scaffoldBackgroundColor: AppColors.white,
       ),
       home: const BirthdayScreen(),
     );
