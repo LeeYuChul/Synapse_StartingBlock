@@ -99,6 +99,7 @@ class _EnterprenutScreenState extends State<EnterprenutScreen> {
                   GestureDetector(
                     onTap: () => _onCardTap(1),
                     child: Card(
+                      elevation: 0,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero,
                           side: BorderSide(color: AppColors.g2, width: 1)),
@@ -137,9 +138,11 @@ class _EnterprenutScreenState extends State<EnterprenutScreen> {
                   GestureDetector(
                     onTap: () => _onCardTap(2),
                     child: Card(
+                      elevation: 0,
                       shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
-                          side: BorderSide(color: AppColors.g2, width: 1)),
+                        borderRadius: BorderRadius.zero,
+                        side: BorderSide(color: AppColors.g2, width: 1),
+                      ),
                       color: selectedCard == 2
                           ? AppColors.g2
                           : AppColors.white, // 선택 상태에 따라 색상 변경
@@ -176,7 +179,9 @@ class _EnterprenutScreenState extends State<EnterprenutScreen> {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.only(bottom: 72),
+                padding: const EdgeInsets.only(
+                  bottom: Sizes.size24,
+                ),
                 child: GestureDetector(
                   onTap: _onNextTap,
                   child: NextContained(

@@ -22,6 +22,20 @@ class _RoadmapScreenState extends State<RoadmapScreen> {
           onPressed: () => Navigator.pop(context),
           icon: Image(image: AppImages.back),
         ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              // 건너뛰기 버튼을 눌렀을 때의 동작
+            },
+            child: const Text(
+              '건너뛰기',
+              style: TextStyle(
+                color: AppColors.activered, // 텍스트 색상
+                // 다른 스타일 속성을 여기에 추가할 수 있습니다.
+              ),
+            ),
+          ),
+        ],
       ),
       body: GestureDetector(
         onTap: () {
@@ -113,7 +127,7 @@ class _RoadmapScreenState extends State<RoadmapScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 72),
+                padding: const EdgeInsets.only(bottom: 24),
                 child: GestureDetector(
                   onTap: _onNextTap,
                   child: const NextContained(

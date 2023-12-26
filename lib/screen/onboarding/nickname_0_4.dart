@@ -241,7 +241,9 @@ class _NickNameScreenState extends State<NickNameScreen> {
                   ),
                 const Spacer(),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 72),
+                  padding: const EdgeInsets.only(
+                    bottom: Sizes.size24,
+                  ),
                   child: GestureDetector(
                     onTap: _isNicknameAvailable &&
                             _isNicknameChecked &&

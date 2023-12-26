@@ -184,7 +184,7 @@ class _ResidenceScreenState extends State<ResidenceScreen> {
               buildGrid(),
               const Spacer(), // 나머지 공간을 채우는 위젯
               Padding(
-                padding: const EdgeInsets.only(bottom: 72),
+                padding: const EdgeInsets.only(bottom: 24),
                 child: GestureDetector(
                   onTap: _onNextTap,
                   child: NextContained(

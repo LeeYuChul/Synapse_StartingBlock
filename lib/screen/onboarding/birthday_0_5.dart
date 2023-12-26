@@ -110,7 +110,9 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
               ),
               const Spacer(), // 나머지 공간을 채우는 위젯
               Padding(
-                padding: const EdgeInsets.only(bottom: 72), // 하단에서 72만큼 위로 올림
+                padding: const EdgeInsets.only(
+                  bottom: Sizes.size24,
+                ),
                 child: GestureDetector(
                   onTap: _onNextTap,
                   child: NextContained(

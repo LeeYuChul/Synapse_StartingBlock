@@ -152,7 +152,7 @@ class _SchoolScreenState extends State<SchoolScreen> {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.only(bottom: 72),
+                padding: const EdgeInsets.only(bottom: 24),
                 child: GestureDetector(
                   onTap: _onNextTap,
                   child: NextContained(
