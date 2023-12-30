@@ -63,6 +63,7 @@ flutter:
     - assets/
     - assets/icon/20/
     - assets/icon/24/
+    - assets/icon/other/
     - assets/onboard_image/
     - assets/logo/
     - lib/data_manage/user_nickname.json

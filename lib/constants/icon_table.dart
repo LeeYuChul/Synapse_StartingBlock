@@ -76,7 +76,11 @@ class AppImages {
   static AssetImage get logo_1024 =>
       const AssetImage('assets/logo/img_launcher_1024.png');
 
+// other image
+  static AssetImage get topapplogo =>
+      const AssetImage('assets/icon/other/TopAppLogo.png');
+
 // exceptional image
   static AssetImage get kako_icon =>
-      const AssetImage('assets/icon/20/kakao-logo.png');
+      const AssetImage('assets/icon/20/kakao_logo.png');
 }
