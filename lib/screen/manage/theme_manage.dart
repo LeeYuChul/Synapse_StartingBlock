@@ -30,6 +30,12 @@ class ThemeManage {
           borderSide: BorderSide(color: AppColors.activered),
         ),
       ),
+      bottomAppBarTheme: const BottomAppBarTheme(
+        padding: EdgeInsets.all(0),
+        elevation: 0,
+        color: AppColors.white,
+        height: 72 + 15, //72는 바텀시트의 높이, 15는 그라데이션 영역
+      ),
     );
   }
 }

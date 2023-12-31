@@ -56,6 +56,28 @@ class AppImages {
   static AssetImage get sort_actived =>
       const AssetImage('assets/icon/24/sort_actived.png');
 
+  //gnb_part_image
+  static AssetImage get home_active =>
+      const AssetImage('assets/icon/24/gnb_part/Home_active.png');
+  static AssetImage get home_inactive =>
+      const AssetImage('assets/icon/24/gnb_part/Home_inactive.png');
+  static AssetImage get myProfile_active =>
+      const AssetImage('assets/icon/24/gnb_part/MyProfile_active.png');
+  static AssetImage get myProfile_inactive =>
+      const AssetImage('assets/icon/24/gnb_part/MyProfile_inactive.png');
+  static AssetImage get outSchool_active =>
+      const AssetImage('assets/icon/24/gnb_part/OutSchool_active.png');
+  static AssetImage get outSchool_inactive =>
+      const AssetImage('assets/icon/24/gnb_part/OutSchool_inactive.png');
+  static AssetImage get roadMap_active =>
+      const AssetImage('assets/icon/24/gnb_part/RoadMap_active.png');
+  static AssetImage get roadMap_inactive =>
+      const AssetImage('assets/icon/24/gnb_part/RoadMap_inactive.png');
+  static AssetImage get school_active =>
+      const AssetImage('assets/icon/24/gnb_part/School_active.png');
+  static AssetImage get school_inactive =>
+      const AssetImage('assets/icon/24/gnb_part/School_inactive.png');
+
   // logo image
   static AssetImage get logo_40 =>
       const AssetImage('assets/logo/img_launcher_40.png');
