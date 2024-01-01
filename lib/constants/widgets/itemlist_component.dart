@@ -35,7 +35,6 @@ class ItemList extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Hero(tag: thisID, child: Container()),
             Gaps.v16,
             Row(
               children: [

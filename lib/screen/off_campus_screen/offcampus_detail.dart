@@ -38,7 +38,7 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
     List<dynamic> jsonData = json.decode(jsonString);
     setState(() {
       var detailJson = jsonData.firstWhere(
-        (element) => element['id'] == widget.thisID,
+        (element) => element['id'].toString() == widget.thisID,
         orElse: () => null,
       );
       if (detailJson != null) {
@@ -53,12 +53,6 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
       }
     });
   }
-
-  // void _openWebView(String url) {
-  //   Navigator.of(context).push(MaterialPageRoute(
-  //     builder: (context) => WebViewScreen(url: url),
-  //   ));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -113,9 +107,9 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
             Text('여기는 아직 데이터 없음', //수정필요
                 style: AppTextStyles.bd2.copyWith(color: AppColors.g6)),
             Gaps.v40,
-            const Row(
+            Row(
               children: [
-                DeatailContainButton(
+                const DeatailContainButton(
                   filledcolor: AppColors.white,
                   text: '질문하기 24',
                   textcolor: AppColors.bluedark,
@@ -126,10 +120,20 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
                   filledcolor: AppColors.bluedark,
                   text: '자세히 보기',
                   textcolor: AppColors.white,
-                  onTapAction: null,
+                  onTapAction: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WebViewScreen(
+                          url: thisLink,
+                          id: widget.thisID,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

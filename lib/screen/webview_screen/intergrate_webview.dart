@@ -1,20 +1,24 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-// class WebViewScreen extends StatelessWidget {
-//   final String url;
+class WebViewScreen extends StatelessWidget {
+  final String url;
+  final String id; // 추가된 id 필드
 
-//   const WebViewScreen({super.key, required this.url});
+  const WebViewScreen({
+    Key? key,
+    required this.url,
+    required this.id,
+  }) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: const Text("Web View")),
-//       body: InAppWebView(
-//         initialUrlRequest:
-//             URLRequest(url: WebUri(url) // WebUri 객체를 사용하여 URLRequest 생성
-//                 ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    WebViewController controller = WebViewController()
+      ..loadRequest(Uri.parse(url));
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('웹뷰')),
+      body: WebViewWidget(controller: controller),
+    );
+  }
+}
