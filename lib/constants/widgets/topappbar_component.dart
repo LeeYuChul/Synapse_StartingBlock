@@ -155,7 +155,12 @@ class SaveAppBar extends StatelessWidget implements PreferredSizeWidget {
         right: 12,
       ),
       child: AppBar(
-        leading: Image(image: AppImages.back),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Image(image: AppImages.back),
+        ),
         actions: <Widget>[
           SizedBox(
             height: 48,

@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
-import 'package:starting_block/screen/manage/screen_manage.dart';
+import 'package:starting_block/screen/manage/models/offcampus_model.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+
+Future<List<OffCampusModel>> loadJsonData() async {
+  String jsonString =
+      await rootBundle.loadString('lib/data_manage/outschool_gara.json');
+  List<dynamic> jsonData = json.decode(jsonString);
+
+  return jsonData
+      .map<OffCampusModel>((json) => OffCampusModel.fromJson(json))
+      .toList();
+}
 
 class OffCampusHome extends StatefulWidget {
   const OffCampusHome({super.key});
@@ -10,7 +22,7 @@ class OffCampusHome extends StatefulWidget {
 }
 
 class _OffCampusHomeState extends State<OffCampusHome> {
-  String dropdownValue = '정렬'; // 선택된 옵션을 저장하는 변수
+  String dropdownValue = '최신순'; // 선택된 옵션을 저장하는 변수
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +94,35 @@ class _OffCampusHomeState extends State<OffCampusHome> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Expanded(
+              child: FutureBuilder<List<OffCampusModel>>(
+                future: loadJsonData(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+                    List<OffCampusModel> data = snapshot.data ?? [];
+                    return ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        OffCampusModel offCampusData = data[index];
+
+                        return ItemList(
+                          thisID: offCampusData.id,
+                          thisOrganize: offCampusData.organize,
+                          thisTitle: offCampusData.title,
+                          thisStartDate: offCampusData.startDate,
+                          thisEndDate: offCampusData.endDate,
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
               ),
             ),
           ],
