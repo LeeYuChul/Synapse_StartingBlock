@@ -16,6 +16,9 @@ export 'package:starting_block/constants/widgets/bottom_navigation/gnb_tap.dart'
 //#교외지원사업 페이지
 export 'package:starting_block/screen/off_campus_screen/offcampus_home.dart';
 export 'package:starting_block/screen/off_campus_screen/offcampus_detail.dart';
+export 'package:starting_block/screen/off_campus_screen/offcampus_detail_info.dart';
+export 'package:starting_block/screen/off_campus_screen/offcampus_recommendation.dart';
+export 'package:starting_block/screen/off_campus_screen/offcampus_search.dart';
 
 //인앱웹뷰 페이지 관리용
 export 'package:starting_block/screen/webview_screen/intergrate_webview.dart';

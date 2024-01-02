@@ -3,6 +3,7 @@ import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/models/offcampus_model.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:starting_block/screen/manage/screen_manage.dart';
 
 Future<List<OffCampusModel>> loadJsonData() async {
   String jsonString =
@@ -27,7 +28,9 @@ class _OffCampusHomeState extends State<OffCampusHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SearchAppBar(),
+      appBar: const SearchAppBar(
+        searchTapScreen: OffCampusSearch(),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(

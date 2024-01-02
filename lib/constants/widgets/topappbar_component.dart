@@ -70,7 +70,12 @@ class SettingAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SearchAppBar({Key? key}) : super(key: key);
+  final searchTapScreen;
+
+  const SearchAppBar({
+    Key? key,
+    required this.searchTapScreen,
+  }) : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(56);
@@ -84,10 +89,18 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: AppBar(
         actions: <Widget>[
-          SizedBox(
-            height: 48,
-            width: 48,
-            child: Image(image: AppImages.search),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => searchTapScreen),
+              );
+            },
+            child: SizedBox(
+              height: 48,
+              width: 48,
+              child: Image(image: AppImages.search),
+            ),
           ),
         ],
       ),
@@ -104,8 +117,11 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Image(
-        image: AppImages.back,
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Image(image: AppImages.back),
       ),
     );
   }
@@ -194,7 +210,12 @@ class BackTitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Image(image: AppImages.back),
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Image(image: AppImages.back),
+      ),
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 12.0),

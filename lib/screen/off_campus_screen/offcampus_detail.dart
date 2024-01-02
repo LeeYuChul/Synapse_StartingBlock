@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/screen_manage.dart';
 import 'package:starting_block/screen/manage/models/offcampus_detail_model.dart';
+import 'package:starting_block/screen/manage/models/offcampus_recommend_model.dart'; // 모델 파일 임포트
 
 class OffCampusDetail extends StatefulWidget {
   final String thisID;
@@ -25,6 +26,7 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
   String thisAge = 'N/A';
   String thisType = 'N/A';
   String thisLink = 'N/A';
+  String thisID = 'N/A';
 
   @override
   void initState() {
@@ -50,89 +52,54 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
         thisAge = detailData.age;
         thisType = detailData.type;
         thisLink = detailData.link;
+        thisID = detailData.id;
       }
     });
+  }
+
+  Future<List<OffCampusRecommendModel>> loadJsonData() async {
+    try {
+      String jsonString =
+          await rootBundle.loadString('lib/data_manage/outschool_gara.json');
+      List<dynamic> jsonData = json.decode(jsonString);
+      List<OffCampusRecommendModel> recommendations = jsonData
+          .where((item) => item['id'].toString() != widget.thisID)
+          .map((item) => OffCampusRecommendModel.fromJson(item))
+          .toList();
+      recommendations.shuffle();
+      return recommendations.take(3).toList(); // 여기서 3개 아이템만 선택
+    } catch (e) {
+      print('Error loading JSON data: $e');
+      return [];
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SaveAppBar(
-        isSaved: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+      appBar: const SaveAppBar(isSaved: true),
+      body: SingleChildScrollView(
+        // SingleChildScrollView로 감싸기
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Gaps.v16,
-            Row(
-              children: [
-                OrganizeChip(text: thisOrganize),
-                const Spacer(),
-              ],
+            OffCampusDetailBody(
+              organize: thisOrganize,
+              title: thisTitle,
+              startDate: thisStartDate,
+              endDate: thisEndDate,
+              age: thisAge,
+              type: thisType,
+              link: thisLink,
+              thisID: widget.thisID,
             ),
-            Gaps.v16,
-            Text(
-              thisTitle,
-              style: AppTextStyles.st1.copyWith(color: AppColors.black),
+            Container(
+              height: 8,
+              decoration: const BoxDecoration(color: AppColors.g1),
             ),
-            Gaps.v8,
-            Text(
-              '등록일 $thisStartDate',
-              style: AppTextStyles.bd4.copyWith(color: AppColors.g4),
-            ),
-            Text(
-              '마감일 $thisEndDate',
-              style: AppTextStyles.bd4.copyWith(color: AppColors.g4),
-            ),
-            Gaps.v12,
-            const CustomDivider(),
-            Gaps.v16,
-            Text('지원 대상',
-                style: AppTextStyles.bd5.copyWith(color: AppColors.g4)),
-            Gaps.v4,
-            Text(thisAge,
-                style: AppTextStyles.bd2.copyWith(color: AppColors.g6)),
-            Gaps.v20,
-            Text('지원 유형',
-                style: AppTextStyles.bd5.copyWith(color: AppColors.g4)),
-            Gaps.v4,
-            Text(thisType,
-                style: AppTextStyles.bd2.copyWith(color: AppColors.g6)),
-            Gaps.v20,
-            Text('지원 혜택',
-                style: AppTextStyles.bd5.copyWith(color: AppColors.g4)),
-            Gaps.v4,
-            Text('여기는 아직 데이터 없음', //수정필요
-                style: AppTextStyles.bd2.copyWith(color: AppColors.g6)),
-            Gaps.v40,
-            Row(
-              children: [
-                const DeatailContainButton(
-                  filledcolor: AppColors.white,
-                  text: '질문하기 24',
-                  textcolor: AppColors.bluedark,
-                  onTapAction: null,
-                ),
-                Gaps.h8,
-                DeatailContainButton(
-                  filledcolor: AppColors.bluedark,
-                  text: '자세히 보기',
-                  textcolor: AppColors.white,
-                  onTapAction: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WebViewScreen(
-                          url: thisLink,
-                          id: widget.thisID,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+            Recommendation(
+              futureRecommendations: loadJsonData(),
+              thisID: thisID,
             ),
           ],
         ),
