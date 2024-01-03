@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:starting_block/constants/constants.dart';
-import 'package:starting_block/screen/manage/screen_manage.dart';
 
 class WebViewScreen extends StatelessWidget {
   final String url;
@@ -21,6 +20,7 @@ class WebViewScreen extends StatelessWidget {
     return Scaffold(
       appBar: const SaveAppBar(
         isSaved: false,
+        bookMarkTap: null,
       ),
       body: WebViewWidget(controller: controller),
     );

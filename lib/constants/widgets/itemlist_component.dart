@@ -4,6 +4,9 @@ import 'package:starting_block/screen/manage/screen_manage.dart';
 
 class ItemList extends StatelessWidget {
   final String thisID, thisOrganize, thisTitle, thisStartDate, thisEndDate;
+  final bool isSaved;
+  final bookMarkTap;
+
   const ItemList({
     super.key,
     required this.thisID,
@@ -11,6 +14,8 @@ class ItemList extends StatelessWidget {
     required this.thisTitle,
     required this.thisStartDate,
     required this.thisEndDate,
+    required this.isSaved, //여기부터 저장 기능
+    required this.bookMarkTap,
   });
 
   @override
@@ -40,7 +45,13 @@ class ItemList extends StatelessWidget {
               children: [
                 OrganizeChip(text: thisOrganize),
                 const Spacer(),
-                Image(image: AppImages.bookmark_inactived)
+                GestureDetector(
+                  onTap: bookMarkTap,
+                  child: Image(
+                      image: isSaved
+                          ? AppImages.bookmark_actived
+                          : AppImages.bookmark_inactived),
+                ),
               ],
             ),
             Gaps.v12,

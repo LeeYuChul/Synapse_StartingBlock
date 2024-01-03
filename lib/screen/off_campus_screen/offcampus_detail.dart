@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:starting_block/constants/constants.dart';
+import 'package:starting_block/screen/manage/bookmark_manage.dart';
 import 'package:starting_block/screen/manage/screen_manage.dart';
 import 'package:starting_block/screen/manage/models/offcampus_detail_model.dart';
-import 'package:starting_block/screen/manage/models/offcampus_recommend_model.dart'; // 모델 파일 임포트
+import 'package:starting_block/screen/manage/models/offcampus_recommend_model.dart';
 
 class OffCampusDetail extends StatefulWidget {
   final String thisID;
@@ -26,12 +27,24 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
   String thisAge = 'N/A';
   String thisType = 'N/A';
   String thisLink = 'N/A';
-  String thisID = 'N/A';
+  String thisID = 'N/A'; //<- 여기까지가 데이터 모델에서 받아오는 데이터
+  bool isSaved = false;
+  late BookMarkManager bookMarkManager; //<- 여기까지가 북마크 기능구현
+  late Future<List<OffCampusRecommendModel>>
+      futureRecommendations; //<-추천 화면 재로딩 금지
 
   @override
   void initState() {
     super.initState();
     loadoffCampusDetailData();
+    initFutureRecommendations();
+    bookMarkManager = BookMarkManager();
+    bookMarkManager.initPrefs();
+    checkBookMarkStatus();
+  }
+
+  void initFutureRecommendations() {
+    futureRecommendations = loadJsonData();
   }
 
   Future<void> loadoffCampusDetailData() async {
@@ -58,26 +71,36 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
   }
 
   Future<List<OffCampusRecommendModel>> loadJsonData() async {
-    try {
-      String jsonString =
-          await rootBundle.loadString('lib/data_manage/outschool_gara.json');
-      List<dynamic> jsonData = json.decode(jsonString);
-      List<OffCampusRecommendModel> recommendations = jsonData
-          .where((item) => item['id'].toString() != widget.thisID)
-          .map((item) => OffCampusRecommendModel.fromJson(item))
-          .toList();
-      recommendations.shuffle();
-      return recommendations.take(3).toList(); // 여기서 3개 아이템만 선택
-    } catch (e) {
-      print('Error loading JSON data: $e');
-      return [];
-    }
+    String jsonString =
+        await rootBundle.loadString('lib/data_manage/outschool_gara.json');
+    List<dynamic> jsonData = json.decode(jsonString);
+    List<OffCampusRecommendModel> recommendations = jsonData
+        .where((item) => item['id'].toString() != widget.thisID)
+        .map((item) => OffCampusRecommendModel.fromJson(item))
+        .toList();
+    recommendations.shuffle();
+    return recommendations.take(3).toList(); // 여기서 3개 아이템만 선택
+  }
+
+  void checkBookMarkStatus() async {
+    bool saved = await bookMarkManager.isBookMarked(widget.thisID);
+    setState(() {
+      isSaved = saved;
+    });
+  }
+
+  onBookMarkTap() async {
+    await bookMarkManager.toggleBookMark(widget.thisID);
+    checkBookMarkStatus();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SaveAppBar(isSaved: true),
+      appBar: SaveAppBar(
+        isSaved: isSaved,
+        bookMarkTap: onBookMarkTap,
+      ),
       body: SingleChildScrollView(
         // SingleChildScrollView로 감싸기
         child: Column(
@@ -98,7 +121,7 @@ class _OffCampusDetailState extends State<OffCampusDetail> {
               decoration: const BoxDecoration(color: AppColors.g1),
             ),
             Recommendation(
-              futureRecommendations: loadJsonData(),
+              futureRecommendations: futureRecommendations,
               thisID: thisID,
             ),
           ],

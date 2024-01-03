@@ -157,9 +157,11 @@ class SaveAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SaveAppBar({
     Key? key,
     required this.isSaved,
+    required this.bookMarkTap,
   }) : super(key: key);
 
   final bool isSaved;
+  final bookMarkTap;
 
   @override
   Size get preferredSize => const Size.fromHeight(56);
@@ -178,13 +180,16 @@ class SaveAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Image(image: AppImages.back),
         ),
         actions: <Widget>[
-          SizedBox(
-            height: 48,
-            width: 48,
-            child: Image(
-                image: isSaved
-                    ? AppImages.bookmark_actived
-                    : AppImages.bookmark_inactived),
+          GestureDetector(
+            onTap: bookMarkTap,
+            child: SizedBox(
+              height: 48,
+              width: 48,
+              child: Image(
+                  image: isSaved
+                      ? AppImages.bookmark_actived
+                      : AppImages.bookmark_inactived),
+            ),
           ),
         ],
       ),
