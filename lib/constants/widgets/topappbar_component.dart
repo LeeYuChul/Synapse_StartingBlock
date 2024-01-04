@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
+import 'package:starting_block/screen/manage/recentsearch_manage.dart';
+import 'package:starting_block/screen/manage/screen_manage.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MainAppBar({
@@ -100,6 +102,68 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 48,
               width: 48,
               child: Image(image: AppImages.search),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SearchFiledAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String hintText;
+  final TextEditingController controller;
+  final VoidCallback onBackTap;
+  final RecentSearchManager recentSearchManager;
+
+  const SearchFiledAppBar({
+    Key? key,
+    required this.hintText,
+    required this.controller,
+    required this.onBackTap,
+    required this.recentSearchManager, // RecentSearchManager 인스턴스 추가
+  }) : super(key: key);
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
+
+  void _onSearchSubmitted(BuildContext context, String query) async {
+    // 검색 내역을 추가하고 결과 화면으로 이동하는 로직
+    await recentSearchManager.addSearch(query);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => OffCampusSearchResult(searchQuery: query),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      leading: GestureDetector(
+        onTap: onBackTap,
+        child: Image(image: AppImages.back),
+      ),
+      titleSpacing: 0,
+      title: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: TextField(
+              controller: controller,
+              onSubmitted: (query) => _onSearchSubmitted(context, query),
+              decoration: InputDecoration(
+                hintText: hintText,
+                hintStyle: AppTextStyles.bd2.copyWith(color: AppColors.g3),
+                contentPadding: EdgeInsets.zero,
+                enabledBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide.none,
+                ),
+              ),
             ),
           ),
         ],

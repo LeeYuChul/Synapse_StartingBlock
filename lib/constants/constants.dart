@@ -12,3 +12,4 @@ export 'package:starting_block/constants/widgets/itemlist_component.dart'; //지
 export 'package:starting_block/constants/widgets/organize_chip.dart'; //기관명 칩
 export 'package:starting_block/constants/widgets/divider_component.dart'; //디바이더
 export 'package:starting_block/constants/widgets/detailpage_containedbutton.dart'; //공고 상세페이지의 버튼
+export 'package:starting_block/constants/widgets/inputchips_component.dart'; //인풋칩버튼
