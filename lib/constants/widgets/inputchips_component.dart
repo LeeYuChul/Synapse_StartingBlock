@@ -90,13 +90,16 @@ class InputChupsSharp extends StatelessWidget {
 
 class InputChipsCustom extends StatelessWidget {
   final String text;
-  final chipTap, thisIcon;
+  final chipTap, thisIcon, thisFilledColor, thisBorderColor, thisTextColor;
 
   const InputChipsCustom({
     super.key,
     required this.text,
     required this.thisIcon,
     this.chipTap,
+    required this.thisFilledColor,
+    required this.thisBorderColor,
+    required this.thisTextColor,
   });
 
   @override
@@ -104,8 +107,9 @@ class InputChipsCustom extends StatelessWidget {
     return Container(
       height: 32,
       decoration: BoxDecoration(
+        color: thisFilledColor,
         borderRadius: BorderRadius.circular(46),
-        border: Border.all(color: AppColors.g3, width: 1),
+        border: Border.all(color: thisBorderColor, width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -115,7 +119,7 @@ class InputChipsCustom extends StatelessWidget {
           Text(
             text,
             style: AppTextStyles.btn2.copyWith(
-              color: AppColors.g5,
+              color: thisTextColor,
             ),
           ),
           Gaps.h4,

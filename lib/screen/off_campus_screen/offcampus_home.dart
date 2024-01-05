@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
-import 'package:starting_block/constants/widgets/bottomsheet/sorting_sheet.dart';
 import 'package:starting_block/screen/manage/models/offcampus_model.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
@@ -24,41 +23,6 @@ class OffCampusHome extends StatefulWidget {
 }
 
 class _OffCampusHomeState extends State<OffCampusHome> {
-  String selectedEntrepreneur = "전체";
-  String entrepreneurChipText = "사업자 형태";
-
-  void _onEntrePreneurBottom(BuildContext context) async {
-    final result = await showModalBottomSheet<String>(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) {
-        return EnterpreneurSheet(
-          selectedEntrepreneur: selectedEntrepreneur,
-          onEntrepreneurSelected: (selected) {
-            Navigator.pop(context, selected);
-          },
-        );
-      },
-    );
-
-    if (result != null) {
-      setState(() {
-        selectedEntrepreneur = result;
-        entrepreneurChipText = result != "전체" ? result : "사업자 형태";
-      });
-    }
-  }
-
-  void _onSortBottom(BuildContext context) async {
-    await showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) {
-        return const SotringSheet();
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,24 +38,9 @@ class _OffCampusHomeState extends State<OffCampusHome> {
             Text('교외 지원 사업',
                 style: AppTextStyles.st1.copyWith(color: AppColors.g6)),
             Gaps.v24,
-            SingleChildScrollView(
+            const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  InputChipsCustom(
-                    text: '초기화',
-                    thisIcon: AppImages.re,
-                  ),
-                  Gaps.h8,
-                  GestureDetector(
-                    onTap: () => _onEntrePreneurBottom(context),
-                    child: InputChipsCustom(
-                      text: entrepreneurChipText,
-                      thisIcon: AppImages.down,
-                    ),
-                  ),
-                ],
-              ),
+              child: IntergrateFilter(),
             ),
             Gaps.v12,
             Container(
@@ -111,7 +60,7 @@ class _OffCampusHomeState extends State<OffCampusHome> {
                   ),
                   const Spacer(), // 왼쪽 텍스트와 오른쪽 버튼 사이의 공간을 만듦
                   GestureDetector(
-                    onTap: () => _onSortBottom(context),
+                    onTap: null,
                     child: Row(
                       children: [
                         const Text(

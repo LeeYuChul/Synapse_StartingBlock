@@ -7,6 +7,8 @@ class AppImages {
   static AssetImage get close => const AssetImage('assets/icon/20/close.png');
   static AssetImage get delete => const AssetImage('assets/icon/20/delete.png');
   static AssetImage get down => const AssetImage('assets/icon/20/down.png');
+  static AssetImage get down_white =>
+      const AssetImage('assets/icon/20/down_white.png');
   static AssetImage get like_actived =>
       const AssetImage('assets/icon/20/like_actived.png');
   static AssetImage get like_inactived =>
@@ -21,7 +23,6 @@ class AppImages {
   static AssetImage get back => const AssetImage('assets/icon/24/back.png');
   static AssetImage get back_white =>
       const AssetImage('assets/icon/24/back_white.png');
-
   static AssetImage get bookmark_actived =>
       const AssetImage('assets/icon/24/bookmark_actived.png');
   static AssetImage get bookmark_inactived =>

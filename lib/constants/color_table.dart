@@ -22,4 +22,7 @@ class AppColors {
 
   // Active Color Colors
   static const Color activered = Color(0XFFe63312);
+
+  // chipsColor
+  static const Color chipsColor = Color(0XFFC8C8C8);
 }
