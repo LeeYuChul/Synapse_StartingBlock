@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
@@ -133,7 +133,7 @@ class SearchFiledAppBar extends StatelessWidget implements PreferredSizeWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => OffCampusSearchResult(searchQuery: query),
+        builder: (context) => OffCampusSearchResult(searchWord: query),
       ),
     );
   }

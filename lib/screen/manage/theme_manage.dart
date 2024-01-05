@@ -37,6 +37,16 @@ class ThemeManage {
         color: AppColors.white,
         height: 72 + 15, //72는 바텀시트의 높이, 15는 그라데이션 영역
       ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        elevation: 0,
+        backgroundColor: AppColors.white, // 배경색 설정
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(24),
+          ),
+        ),
+        clipBehavior: Clip.hardEdge,
+      ),
     );
   }
 }

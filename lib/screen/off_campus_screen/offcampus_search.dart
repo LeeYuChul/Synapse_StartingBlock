@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/recentsearch_manage.dart';
 import 'package:starting_block/screen/manage/screen_manage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 const interests = [
   "Daily Life",
@@ -60,7 +59,7 @@ class _OffCampusSearchState extends State<OffCampusSearch> {
     final bool? isUpdated = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => OffCampusSearchResult(searchQuery: query),
+        builder: (context) => OffCampusSearchResult(searchWord: query),
       ),
     );
 

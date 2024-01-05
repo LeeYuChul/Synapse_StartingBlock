@@ -87,3 +87,42 @@ class InputChupsSharp extends StatelessWidget {
     );
   }
 }
+
+class InputChipsCustom extends StatelessWidget {
+  final String text;
+  final chipTap, thisIcon;
+
+  const InputChipsCustom({
+    super.key,
+    required this.text,
+    required this.thisIcon,
+    this.chipTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 32,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(46),
+        border: Border.all(color: AppColors.g3, width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Gaps.h12,
+          Text(
+            text,
+            style: AppTextStyles.btn2.copyWith(
+              color: AppColors.g5,
+            ),
+          ),
+          Gaps.h4,
+          Image(image: thisIcon),
+          Gaps.h8,
+        ],
+      ),
+    );
+  }
+}

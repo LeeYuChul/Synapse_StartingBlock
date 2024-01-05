@@ -13,3 +13,12 @@ export 'package:starting_block/constants/widgets/organize_chip.dart'; //기관�
 export 'package:starting_block/constants/widgets/divider_component.dart'; //디바이더
 export 'package:starting_block/constants/widgets/detailpage_containedbutton.dart'; //공고 상세페이지의 버튼
 export 'package:starting_block/constants/widgets/inputchips_component.dart'; //인풋칩버튼
+
+//바텀시트
+export 'package:starting_block/constants/widgets/bottomsheet/entrepreneur_sheet.dart'; //사업자 형태 바텀시트
+export 'package:starting_block/constants/widgets/bottomsheet/residence_sheet.dart'; //거주지 바텀시트
+export 'package:starting_block/constants/widgets/bottomsheet/supporttype_sheet.dart'; //지원분야 바텀시트
+export 'package:starting_block/constants/widgets/bottomsheet/sorting_sheet.dart'; //지원분야 바텀시트
+
+export 'package:starting_block/constants/widgets/bottomsheet/bottomsheet_list.dart'; //bottomsheet 리스트 컴포넌트
+

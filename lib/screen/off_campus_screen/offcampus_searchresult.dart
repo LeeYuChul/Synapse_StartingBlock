@@ -3,9 +3,12 @@ import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/recentsearch_manage.dart';
 
 class OffCampusSearchResult extends StatefulWidget {
-  final String searchQuery; // 검색어를 저장할 변수
+  final String searchWord; // 검색어를 저장할 변수
 
-  const OffCampusSearchResult({super.key, required this.searchQuery});
+  const OffCampusSearchResult({
+    super.key,
+    required this.searchWord,
+  });
 
   @override
   State<OffCampusSearchResult> createState() => _OffCampusSearchResultState();
@@ -19,10 +22,10 @@ class _OffCampusSearchResultState extends State<OffCampusSearchResult> {
   @override
   void initState() {
     super.initState();
-    _controller.text = widget.searchQuery;
+    _controller.text = widget.searchWord;
 
     // 검색 결과 페이지가 로드될 때, 검색어를 RecentSearchManager에 추가
-    recentSearchManager.addSearch(widget.searchQuery);
+    recentSearchManager.addSearch(widget.searchWord);
   }
 
   @override
@@ -106,5 +109,3 @@ class _OffCampusSearchResultState extends State<OffCampusSearchResult> {
     );
   }
 }
-
-        // child: Text('검색결과화면: ${widget.searchQuery}'),

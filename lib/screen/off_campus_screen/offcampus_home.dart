@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
+import 'package:starting_block/constants/widgets/bottomsheet/sorting_sheet.dart';
 import 'package:starting_block/screen/manage/models/offcampus_model.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
@@ -23,7 +24,40 @@ class OffCampusHome extends StatefulWidget {
 }
 
 class _OffCampusHomeState extends State<OffCampusHome> {
-  String dropdownValue = '최신순'; // 선택된 옵션을 저장하는 변수
+  String selectedEntrepreneur = "전체";
+  String entrepreneurChipText = "사업자 형태";
+
+  void _onEntrePreneurBottom(BuildContext context) async {
+    final result = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return EnterpreneurSheet(
+          selectedEntrepreneur: selectedEntrepreneur,
+          onEntrepreneurSelected: (selected) {
+            Navigator.pop(context, selected);
+          },
+        );
+      },
+    );
+
+    if (result != null) {
+      setState(() {
+        selectedEntrepreneur = result;
+        entrepreneurChipText = result != "전체" ? result : "사업자 형태";
+      });
+    }
+  }
+
+  void _onSortBottom(BuildContext context) async {
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return const SotringSheet();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +74,24 @@ class _OffCampusHomeState extends State<OffCampusHome> {
             Text('교외 지원 사업',
                 style: AppTextStyles.st1.copyWith(color: AppColors.g6)),
             Gaps.v24,
-            Container(
-              height: 32, //변경필요
-              color: AppColors.g2,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  InputChipsCustom(
+                    text: '초기화',
+                    thisIcon: AppImages.re,
+                  ),
+                  Gaps.h8,
+                  GestureDetector(
+                    onTap: () => _onEntrePreneurBottom(context),
+                    child: InputChipsCustom(
+                      text: entrepreneurChipText,
+                      thisIcon: AppImages.down,
+                    ),
+                  ),
+                ],
+              ),
             ),
             Gaps.v12,
             Container(
@@ -61,33 +110,13 @@ class _OffCampusHomeState extends State<OffCampusHome> {
                     style: AppTextStyles.bd6.copyWith(color: AppColors.g4),
                   ),
                   const Spacer(), // 왼쪽 텍스트와 오른쪽 버튼 사이의 공간을 만듦
-                  PopupMenuButton<String>(
-                    onSelected: (String value) {
-                      setState(() {
-                        dropdownValue = value; // 사용자가 선택한 값을 저장
-                      });
-                    },
-                    itemBuilder: (BuildContext context) {
-                      return [
-                        const PopupMenuItem(
-                          value: '최신순',
-                          child: Text('최신순'),
-                        ),
-                        const PopupMenuItem(
-                          value: '오래된 순',
-                          child: Text('오래된 순'),
-                        ),
-                        const PopupMenuItem(
-                          value: '찜 많은 순',
-                          child: Text('찜 많은 순'),
-                        ),
-                      ];
-                    },
+                  GestureDetector(
+                    onTap: () => _onSortBottom(context),
                     child: Row(
                       children: [
-                        Text(
-                          dropdownValue,
-                          style: const TextStyle(
+                        const Text(
+                          '최신순',
+                          style: TextStyle(
                               fontFamily: 'pretendard',
                               fontSize: 14,
                               color: AppColors.g4),

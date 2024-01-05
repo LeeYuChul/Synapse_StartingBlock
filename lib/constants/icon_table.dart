@@ -19,6 +19,9 @@ class AppImages {
 
   // Size 24 Icons
   static AssetImage get back => const AssetImage('assets/icon/24/back.png');
+  static AssetImage get back_white =>
+      const AssetImage('assets/icon/24/back_white.png');
+
   static AssetImage get bookmark_actived =>
       const AssetImage('assets/icon/24/bookmark_actived.png');
   static AssetImage get bookmark_inactived =>
