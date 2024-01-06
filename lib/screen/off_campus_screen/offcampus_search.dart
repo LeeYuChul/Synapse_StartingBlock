@@ -86,8 +86,11 @@ class _OffCampusSearchState extends State<OffCampusSearch> {
           controller: _controller,
           recentSearchManager: recentSearchManager,
           onBackTap: () {
-            // 검색어를 유지하고 이전 화면으로 이동
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const IntergrateScreen()),
+              (Route<dynamic> route) => false,
+            );
           },
         ),
         body: Padding(
@@ -96,57 +99,51 @@ class _OffCampusSearchState extends State<OffCampusSearch> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.v24,
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '최근 검색어',
-                    style: AppTextStyles.st2.copyWith(color: AppColors.g6),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: deleteAllSearch,
-                    child: Text(
-                      '전체 삭제',
-                      style: AppTextStyles.btn1.copyWith(color: AppColors.g5),
-                    ),
-                  ),
-                ],
-              ),
-              Gaps.v16,
               recentSearches.isNotEmpty
-                  ? SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: recentSearches.map((search) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: InputChipsDelete(
-                              thisIcon: AppImages.close,
-                              text: search,
-                              deleteTap: () => deleteSearch(search),
-                              chipTap: () =>
-                                  navigateToSearchResult(search), // 여기에 추가
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '최근 검색어',
+                              style: AppTextStyles.st2
+                                  .copyWith(color: AppColors.g6),
                             ),
-                          );
-                        }).toList(),
-                      ),
-                    )
-                  : SizedBox(
-                      height: 32,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '최근 검색어가 없습니다',
-                            style:
-                                AppTextStyles.bd4.copyWith(color: AppColors.g3),
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: deleteAllSearch,
+                              child: Text(
+                                '전체 삭제',
+                                style: AppTextStyles.btn1
+                                    .copyWith(color: AppColors.g5),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Gaps.v16,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: recentSearches.map((search) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: InputChipsDelete(
+                                  thisIcon: AppImages.close,
+                                  text: search,
+                                  deleteTap: () => deleteSearch(search),
+                                  chipTap: () =>
+                                      navigateToSearchResult(search), // 여기에 추가
+                                ),
+                              );
+                            }).toList(),
                           ),
-                        ],
-                      ),
-                    ),
-              Gaps.v64,
+                        ),
+                        Gaps.v64,
+                      ],
+                    )
+                  : Container(),
               Text(
                 '인기 검색어',
                 style: AppTextStyles.st2.copyWith(color: AppColors.g6),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/recentsearch_manage.dart';
+import 'package:starting_block/screen/manage/screen_manage.dart';
 
 class OffCampusSearchResult extends StatefulWidget {
   final String searchWord; // 검색어를 저장할 변수
@@ -36,7 +37,11 @@ class _OffCampusSearchResultState extends State<OffCampusSearchResult> {
         controller: _controller, // 컨트롤러 사용
         recentSearchManager: recentSearchManager,
         onBackTap: () {
-          Navigator.pop(context);
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const OffCampusSearch()),
+            (Route<dynamic> route) => false,
+          );
         },
       ),
       body: Padding(
@@ -44,9 +49,9 @@ class _OffCampusSearchResultState extends State<OffCampusSearchResult> {
         child: Column(
           children: [
             Gaps.v12,
-            Container(
-              height: 32, //변경필요
-              color: AppColors.g2,
+            const SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: IntergrateFilter(),
             ),
             Gaps.v12,
             Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:starting_block/constants/constants.dart';
-import 'package:starting_block/screen/manage/screen_manage.dart'; // 로드맵 데이터를 여기서 불러옴
+import 'package:starting_block/screen/manage/screen_manage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert'; // JSON 인코딩/디코딩을 위해 추가
 
 class RoadmapScreen extends StatefulWidget {
   const RoadmapScreen({super.key});
@@ -10,8 +12,36 @@ class RoadmapScreen extends StatefulWidget {
 }
 
 class _RoadmapScreenState extends State<RoadmapScreen> {
-  void _onNextTap() {
-    // 다음 탭 로직 구현 (필요한 경우)
+  // 항상 초기 리스트를 사용합니다.
+  List<String> roadmapItems = [
+    '창업 교육',
+    '아이디어 창출',
+    '공간 마련',
+    '사업 계획서',
+    'R&D / 시제품 제작',
+    '사업 검증',
+    'IR Deck 작성',
+    '자금 확보',
+    '사업화',
+  ];
+
+  Future<void> _saveRoadmapItems() async {
+    final prefs = await SharedPreferences.getInstance();
+    String roadmapItemsString = json.encode(roadmapItems);
+    await prefs.setString('roadmapList', roadmapItemsString);
+    print(roadmapItemsString); // 저장된 리스트를 콘솔에 출력합니다.
+  }
+
+  void _onNextTap() async {
+    await _saveRoadmapItems();
+
+    // Navigator.of(context) 호출 전에 현재 위젯이 위젯 트리에 여전히 있는지 확인
+    if (!mounted) return;
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const IntergrateScreen()),
+      (Route<dynamic> route) => false,
+    );
   }
 
   @override

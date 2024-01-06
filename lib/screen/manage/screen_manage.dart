@@ -26,7 +26,6 @@ export 'package:starting_block/screen/webview_screen/intergrate_webview.dart';
 
 //데이터 파일 관리용
 export 'package:starting_block/screen/onboarding_screen/onboarding_data/school_info.dart';
-export 'package:starting_block/screen/manage/roadmap_data.dart';
 
 //설정 데이터 파일 관리용
 export 'package:starting_block/screen/manage/theme_manage.dart';
