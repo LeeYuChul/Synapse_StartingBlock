@@ -299,3 +299,36 @@ class BackTitleAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+
+class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const TitleAppBar({
+    Key? key,
+    required this.thisTextStyle,
+    required this.text,
+    required this.onPress,
+  }) : super(key: key);
+
+  final thisTextStyle;
+  final String text;
+  final onPress;
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      actions: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(right: 12.0),
+          child: TextButton(
+            onPressed: () {
+              onPress;
+            },
+            child: Text(text, style: thisTextStyle),
+          ),
+        ),
+      ],
+    );
+  }
+}

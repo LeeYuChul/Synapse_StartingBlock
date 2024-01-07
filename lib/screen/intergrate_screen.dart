@@ -41,9 +41,7 @@ class _OffCampusState extends State<IntergrateScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 3,
-            child: const Center(
-              child: Text('로드맵'),
-            ),
+            child: const RoadmapHome(),
           ),
           Offstage(
             offstage: _selectedIndex != 4,
