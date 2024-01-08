@@ -10,7 +10,7 @@ class IntergrateScreen extends StatefulWidget {
 }
 
 class _OffCampusState extends State<IntergrateScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
 
   void _onTap(int index) {
     setState(() {

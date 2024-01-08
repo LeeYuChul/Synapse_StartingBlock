@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/screen_manage.dart'; // schoolList가 여기에 정의되어 있다고 가정
 
@@ -51,8 +54,18 @@ class _SchoolScreenState extends State<SchoolScreen> {
     });
   }
 
-  void _onNextTap() {
+  Future<void> _saveSchoolName() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userSchoolName', _schoolInfo);
+  }
+
+  void _onNextTap() async {
     if (_schoolInfo.isEmpty) return;
+
+    // 대학교명을 SharedPreferences에 저장
+    await _saveSchoolName();
+
+    // 다음 화면으로 이동
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const RoadmapScreen(),

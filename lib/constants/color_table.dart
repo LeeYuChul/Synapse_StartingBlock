@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Primary Colors
-  static const Color bluebg = Color(0XFFF1FCFF);
-  static const Color bluelight = Color(0XFF9DECFF);
-  static const Color blue = Color(0XFF2965FF);
-  static const Color bluedark = Color(0XFF111C2F);
+  static const Color bluebg = Color(0XFFF0F3FF); //0108변경_기존:F1FCFF
+  static const Color bluelight = Color(0XFFB1C5F6); //0108변경_기존:9DECFF
+  static const Color blue = Color(0XFF5E8BFF); //0108변경_기존:2965FF
+  static const Color bluedark = Color(0XFF213049); //0108변경_기존:111C2F
+  static const Color bluedeep = Color(0XFF3255A4); //0108신규추가
   static const Color purple = Color(0XFFC03AFF);
 
   // Secondary Colors
   static const Color white = Color(0XFFffffff);
+  static const Color salmon = Color(0XFFFF6B00); //0108신규추가_세컨더리
 
   // Gray Scale Colors
   static const Color g1 = Color(0XFFf4f4f4);

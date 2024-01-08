@@ -29,8 +29,11 @@ export 'package:starting_block/screen/webview_screen/intergrate_webview.dart';
 
 //데이터 파일 관리용
 export 'package:starting_block/screen/onboarding_screen/onboarding_data/school_info.dart';
+export 'package:starting_block/screen/manage/userdata/user_info.dart'; //유저 데이터 관리용
+export 'package:starting_block/screen/manage/models/roadmap_model.dart'; //로드맵 관리용
 
 //설정 데이터 파일 관리용
 export 'package:starting_block/screen/manage/theme_manage.dart';
 
 //테스트용
+export 'package:starting_block/screen/roadmap_screen/widget/roadmap_button.dart';//테스트파일

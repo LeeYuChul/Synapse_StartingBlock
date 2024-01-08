@@ -1,6 +1,7 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/screen_manage.dart';
 
@@ -105,8 +106,18 @@ class _ResidenceScreenState extends State<ResidenceScreen> {
     });
   }
 
-  void _onNextTap() {
+  Future<void> _saveUserResidence() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userResidence', selectedRegion ?? "");
+  }
+
+  void _onNextTap() async {
     if (selectedRegion == null) return; // 지역이 선택되지 않으면 반환
+
+    // 선택된 지역명을 SharedPreferences에 저장
+    await _saveUserResidence();
+
+    // 다음 화면으로 이동
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const SchoolScreen(),

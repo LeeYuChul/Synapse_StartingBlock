@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/screen_manage.dart';
 
@@ -18,8 +21,19 @@ class _EnterprenutScreenState extends State<EnterprenutScreen> {
     });
   }
 
-  void _onNextTap() {
+  Future<void> _saveEntrepreneurCheck() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isEntrepreneur = selectedCard == 1; // '네' 선택 시 true, '아니오' 선택 시 false
+    await prefs.setBool('enterpreneurCheck', isEntrepreneur);
+  }
+
+  void _onNextTap() async {
     if (selectedCard == null) return; // 카드가 선택되지 않으면 반환
+
+    // 선택된 값을 SharedPreferences에 저장
+    await _saveEntrepreneurCheck();
+
+    // 다음 화면으로 이동
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ResidenceScreen(),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:starting_block/constants/constants.dart';
 import 'package:starting_block/screen/manage/screen_manage.dart';
 
@@ -21,6 +22,11 @@ class _NickNameScreenState extends State<NickNameScreen> {
   String _nicknameAvailabilityMessage = "";
   bool _isNicknameChecked = false;
   bool _isInputStarted = false;
+
+  Future<void> _saveNickname() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userNickName', _nickname);
+  }
 
   @override
   void initState() {
@@ -95,8 +101,16 @@ class _NickNameScreenState extends State<NickNameScreen> {
     });
   }
 
-  void _onNextTap() {
-    if (_nickname.isEmpty || !_isNicknameAvailable) return;
+  void _onNextTap() async {
+    if (_nickname.isEmpty || !_isNicknameAvailable || !_isNicknameChecked) {
+      return;
+    }
+
+    // 닉네임을 SharedPreferences에 저장
+    await _saveNickname();
+
+    // Navigator 호출 전에 현재 위젯이 위젯 트리에 여전히 있는지 확인
+    if (!mounted) return;
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const BirthdayScreen(),

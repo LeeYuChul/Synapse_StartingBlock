@@ -29,7 +29,6 @@ class _RoadmapScreenState extends State<RoadmapScreen> {
     final prefs = await SharedPreferences.getInstance();
     String roadmapItemsString = json.encode(roadmapItems);
     await prefs.setString('roadmapList', roadmapItemsString);
-    print(roadmapItemsString); // 저장된 리스트를 콘솔에 출력합니다.
   }
 
   void _onNextTap() async {

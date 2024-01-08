@@ -105,6 +105,8 @@ class AppImages {
 // other image
   static AssetImage get topapplogo =>
       const AssetImage('assets/icon/other/TopAppLogo.png');
+  static AssetImage get roadmap_downarrow =>
+      const AssetImage('assets/icon/other/roadmap_downarrow.png');
 
 // exceptional image
   static AssetImage get kako_icon =>
