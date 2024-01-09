@@ -206,10 +206,15 @@ class CloseAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: AppBar(
         actions: <Widget>[
-          SizedBox(
-            height: 48,
-            width: 48,
-            child: Image(image: AppImages.close24),
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: SizedBox(
+              height: 48,
+              width: 48,
+              child: Image(image: AppImages.close24),
+            ),
           ),
         ],
       ),

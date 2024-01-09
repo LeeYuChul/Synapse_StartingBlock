@@ -135,6 +135,8 @@ class _RoadmapScreenState extends State<RoadmapScreen> {
                         key: Key(item),
                         height: 48, // 여기에서 높이를 지정합니다
                         child: ListTile(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 24),
                           title: Text(
                             item,
                             style:

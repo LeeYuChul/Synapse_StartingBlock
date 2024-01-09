@@ -23,6 +23,8 @@ export 'package:starting_block/screen/off_campus_screen/offcampus_searchresult.d
 
 //로드맵 페이지
 export 'package:starting_block/screen/roadmap_screen/roadmap_home.dart';
+export 'package:starting_block/screen/roadmap_screen/roadmaplist_edit.dart';
+export 'package:starting_block/screen/roadmap_screen/roadmaplist_add.dart';
 
 //인앱웹뷰 페이지 관리용
 export 'package:starting_block/screen/webview_screen/intergrate_webview.dart';
